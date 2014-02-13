@@ -1,0 +1,52 @@
+2.1.0 :001 > "Maya".upcase
+ => "MAYA" 
+
+2.1.0 :002 > "Maya".capitalize
+ => "Maya" 
+
+2.1.0 :003 > x = Math.sqrt(16)
+ => 4.0 
+2.1.0 :004 > "Maya".length
+ => 4 
+
+2.1.0 :029 > def largest
+2.1.0 :030?>   max = 0
+2.1.0 :031?>   arrays = [5,3,2]
+2.1.0 :032?>   arrays.each do |array|
+2.1.0 :033 >       if max < array
+2.1.0 :034?>       max = array
+2.1.0 :035?>       end
+2.1.0 :036?>     return max
+2.1.0 :037?>     end
+2.1.0 :038?>   end
+ => :largest 
+2.1.0 :039 > largest
+ => 5 
+
+2.1.0 :086 >   def reverse_array
+2.1.0 :087?>     newarrays = []
+2.1.0 :088?>     arrays = [5,3,2]
+2.1.0 :089?>   
+2.1.0 :090 >       arrays.reverse_each do |array|
+2.1.0 :091 >           newarrays = newarrays + [array]
+2.1.0 :092?>       end
+2.1.0 :093?>   
+2.1.0 :094 >       return newarrays
+2.1.0 :095?>   end
+ => :reverse_array 
+2.1.0 :096 > reverse_array
+ => [2, 3, 5] 
+
+2.1.0 :097 > def maya
+2.1.0 :098?>   "Hello, Maya!"
+2.1.0 :099?>   end
+ => :maya 
+2.1.0 :100 > maya
+ => "Hello, Maya!" 
+
+2.1.0 :104 > def me(name)
+2.1.0 :105?>   puts "Hello #{name}!"
+2.1.0 :106?>   end
+ => :me 
+2.1.0 :107 > me("Maya")
+Hello Maya!

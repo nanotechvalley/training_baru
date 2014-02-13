@@ -1,0 +1,23 @@
+<%= flash[:notice] %>
+<%= flash[:error] %>
+
+<%=link_to "New Register", new_user_path, :class => "register" %>
+
+<table border="1">
+	<tr>
+		<td> First Name </td>
+		<td> Email </td>
+		<td> Username </td>
+		<td> Age </td>
+	</tr>
+	<% @users.each do |user|%>
+		<tr>
+		<td><%= link_to user.first_name, user_path(user.id) %></td>
+		<td><%= user.email %></td>
+		<td><%= user.username %></td>
+		<td><%= user.age %></td>
+		<td><%= link_to "edit", edit_user_path(user.id) %></td>
+		<td><%= link_to "delete", user_path(user.id), :confirm => "Are you sure to delete this user?", :method => "delete"%></td>
+		</tr>
+<% end %>
+</table>

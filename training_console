@@ -1,0 +1,132 @@
+
+2.1.0 :018 > User.find(1)
+  User Load (27.5ms)  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+ => #<User id: 1, first_name: "Maya", last_name: nil, email: "maya@maya.com", username: nil, password: nil, created_at: "2014-02-06 08:38:29", updated_at: "2014-02-06 08:38:29", date_of_birth: nil, age: nil, address: nil> 
+2.1.0 :019 > User.where("first_name = 'Maya' AND email = 'maya@maya.com'")
+  User Load (21.5ms)  SELECT `users`.* FROM `users` WHERE (first_name = 'Maya' AND email = 'maya@maya.com')
+ => #<ActiveRecord::Relation [#<User id: 1, first_name: "Maya", last_name: nil, email: "maya@maya.com", username: nil, password: nil, created_at: "2014-02-06 08:38:29", updated_at: "2014-02-06 08:38:29", date_of_birth: nil, age: nil, address: nil>]> 
+2.1.0 :020 > user = User.where ("first_name = 'Maya' AND email = 'maya@maya.com'")
+  User Load (0.2ms)  SELECT `users`.* FROM `users` WHERE (first_name = 'Maya' AND email = 'maya@maya.com')
+ => #<ActiveRecord::Relation [#<User id: 1, first_name: "Maya", last_name: nil, email: "maya@maya.com", username: nil, password: nil, created_at: "2014-02-06 08:38:29", updated_at: "2014-02-06 08:38:29", date_of_birth: nil, age: nil, address: nil>]> 
+2.1.0 :021 > usr = User.find_by_first_name("Maya")
+  User Load (0.4ms)  SELECT `users`.* FROM `users` WHERE `users`.`first_name` = 'Maya' LIMIT 1
+ => #<User id: 1, first_name: "Maya", last_name: nil, email: "maya@maya.com", username: nil, password: nil, created_at: "2014-02-06 08:38:29", updated_at: "2014-02-06 08:38:29", date_of_birth: nil, age: nil, address: nil> 
+2.1.0 :022 > user = User.find_all_by_first_name("Maya")
+DEPRECATION WARNING: This dynamic method is deprecated. Please use e.g. Post.where(...).all instead. (called from irb_binding at (irb):22)
+  User Load (15.2ms)  SELECT `users`.* FROM `users` WHERE `users`.`first_name` = 'Maya'
+ => [#<User id: 1, first_name: "Maya", last_name: nil, email: "maya@maya.com", username: nil, password: nil, created_at: "2014-02-06 08:38:29", updated_at: "2014-02-06 08:38:29", date_of_birth: nil, age: nil, address: nil>] 
+2.1.0 :024 > users = User.find_all_by_first_name_and_email("Maya","maya@maya.com")
+DEPRECATION WARNING: This dynamic method is deprecated. Please use e.g. Post.where(...).all instead. (called from irb_binding at (irb):24)
+  User Load (0.4ms)  SELECT `users`.* FROM `users` WHERE `users`.`first_name` = 'Maya' AND `users`.`email` = 'maya@maya.com'
+ => [#<User id: 1, first_name: "Maya", last_name: nil, email: "maya@maya.com", username: nil, password: nil, created_at: "2014-02-06 08:38:29", updated_at: "2014-02-06 08:38:29", date_of_birth: nil, age: nil, address: nil>] 
+2.1.0 :026 > user = User.find_by_id(1)
+  User Load (0.2ms)  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+ => #<User id: 1, first_name: "Maya", last_name: nil, email: "maya@maya.com", username: nil, password: nil, created_at: "2014-02-06 08:38:29", updated_at: "2014-02-06 08:38:29", date_of_birth: nil, age: nil, address: nil> 
+2.1.0 :028 > user = user.update_attribute( :first_name, "Maya")
+   (0.2ms)  BEGIN
+   (0.1ms)  COMMIT
+ => true 
+2.1.0 :031 > user = User.find_by_id(2)
+  User Load (0.4ms)  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+ => #<User id: 2, first_name: "Nana", last_name: nil, email: "nana@nana.com", username: nil, password: nil, created_at: "2014-02-06 09:17:20", updated_at: "2014-02-06 09:17:20", date_of_birth: nil, age: nil, address: nil> 
+2.1.0 :032 > user = user.update_attributes(:first_name => "Maya" , :email => "maya@maya.com")
+   (0.2ms)  BEGIN
+  SQL (56.4ms)  UPDATE `users` SET `first_name` = 'Maya', `email` = 'maya@maya.com', `updated_at` = '2014-02-06 09:36:02' WHERE `users`.`id` = 2
+   (48.6ms)  COMMIT
+ => true 
+2.1.0 :034 > user = User.update(1, :first_name => "Maya", :email => "maya@maya.com")
+  User Load (0.4ms)  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+   (0.1ms)  BEGIN
+   (0.1ms)  COMMIT
+ => #<User id: 1, first_name: "Maya", last_name: nil, email: "maya@maya.com", username: nil, password: nil, created_at: "2014-02-06 08:38:29", updated_at: "2014-02-06 08:38:29", date_of_birth: nil, age: nil, address: nil> 
+2.1.0 :040 > user = User.find_by_id(1)
+  User Load (0.2ms)  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+ => #<User id: 1, first_name: "Maya", last_name: nil, email: "maya@maya.com", username: nil, password: nil, created_at: "2014-02-06 08:38:29", updated_at: "2014-02-06 08:38:29", date_of_birth: nil, age: nil, address: nil> 
+2.1.0 :041 > user.destroy
+   (0.2ms)  BEGIN
+  SQL (22.0ms)  DELETE FROM `users` WHERE `users`.`id` = 1
+   (57.4ms)  COMMIT
+ => #<User id: 1, first_name: "Maya", last_name: nil, email: "maya@maya.com", username: nil, password: nil, created_at: "2014-02-06 08:38:29", updated_at: "2014-02-06 08:38:29", date_of_birth: nil, age: nil, address: nil> 
+2.1.0 :042 > users = User.create({ :first_name=> "Nana", :email=> "nana@nana.com", :last_name=> "Nunu", :age=>21, :address=>"Dago"})
+   (0.2ms)  BEGIN
+  SQL (9.4ms)  INSERT INTO `users` (`address`, `age`, `created_at`, `email`, `first_name`, `last_name`, `updated_at`) VALUES ('Dago', 21, '2014-02-06 09:53:20', 'nana@nana.com', 'Nana', 'Nunu', '2014-02-06 09:53:20')
+   (40.6ms)  COMMIT
+ => #<User id: 3, first_name: "Nana", last_name: "Nunu", email: "nana@nana.com", username: nil, password: nil, created_at: "2014-02-06 09:53:20", updated_at: "2014-02-06 09:53:20", date_of_birth: nil, age: 21, address: "Dago"> 
+2.1.0 :043 > users = User.create({ :first_name=> "Baba", :email=> "baba@baba.com", :last_name=> "Bubu", :age=>21, :address=>"Gedebage"})
+   (0.2ms)  BEGIN
+  SQL (10.8ms)  INSERT INTO `users` (`address`, `age`, `created_at`, `email`, `first_name`, `last_name`, `updated_at`) VALUES ('Gedebage', 21, '2014-02-06 09:54:12', 'baba@baba.com', 'Baba', 'Bubu', '2014-02-06 09:54:12')
+   (42.9ms)  COMMIT
+ => #<User id: 4, first_name: "Baba", last_name: "Bubu", email: "baba@baba.com", username: nil, password: nil, created_at: "2014-02-06 09:54:12", updated_at: "2014-02-06 09:54:12", date_of_birth: nil, age: 21, address: "Gedebage"> 
+2.1.0 :044 > users = User.create({ :first_name=> "Keke", :email=> "keke@keke.com", :last_name=> "Keke", :age=>21, :address=>"Cimahi"})
+   (0.2ms)  BEGIN
+  SQL (0.6ms)  INSERT INTO `users` (`address`, `age`, `created_at`, `email`, `first_name`, `last_name`, `updated_at`) VALUES ('Cimahi', 21, '2014-02-06 09:54:39', 'keke@keke.com', 'Keke', 'Keke', '2014-02-06 09:54:39')
+   (29.8ms)  COMMIT
+ => #<User id: 5, first_name: "Keke", last_name: "Keke", email: "keke@keke.com", username: nil, password: nil, created_at: "2014-02-06 09:54:39", updated_at: "2014-02-06 09:54:39", date_of_birth: nil, age: 21, address: "Cimahi"> 
+2.1.0 :045 > users = User.create({ :first_name=> "Maria", :email=> "mari@mari.com", :last_name=> "Mari", :age=>21, :address=>"Jakarta"})
+   (0.2ms)  BEGIN
+  SQL (0.9ms)  INSERT INTO `users` (`address`, `age`, `created_at`, `email`, `first_name`, `last_name`, `updated_at`) VALUES ('Jakarta', 21, '2014-02-06 09:55:10', 'mari@mari.com', 'Maria', 'Mari', '2014-02-06 09:55:10')
+   (30.7ms)  COMMIT
+ => #<User id: 6, first_name: "Maria", last_name: "Mari", email: "mari@mari.com", username: nil, password: nil, created_at: "2014-02-06 09:55:10", updated_at: "2014-02-06 09:55:10", date_of_birth: nil, age: 21, address: "Jakarta"> 
+2.1.0 :046 > users = User.create({ :first_name=> "Tomi", :email=> "tomi@tomi.com", :last_name=> "tomtom", :age=>21, :address=>"Bekasi"})
+   (0.2ms)  BEGIN
+  SQL (16.9ms)  INSERT INTO `users` (`address`, `age`, `created_at`, `email`, `first_name`, `last_name`, `updated_at`) VALUES ('Bekasi', 21, '2014-02-06 09:55:47', 'tomi@tomi.com', 'Tomi', 'tomtom', '2014-02-06 09:55:47')
+   (52.8ms)  COMMIT
+ => #<User id: 7, first_name: "Tomi", last_name: "tomtom", email: "tomi@tomi.com", username: nil, password: nil, created_at: "2014-02-06 09:55:47", updated_at: "2014-02-06 09:55:47", date_of_birth: nil, age: 21, address: "Bekasi"> 
+2.1.0 :047 > User.all
+  User Load (0.3ms)  SELECT `users`.* FROM `users`
+ => #<ActiveRecord::Relation [#<User id: 2, first_name: "Maya", last_name: nil, email: "maya@maya.com", username: nil, password: nil, created_at: "2014-02-06 09:17:20", updated_at: "2014-02-06 09:36:02", date_of_birth: nil, age: nil, address: nil>, #<User id: 3, first_name: "Nana", last_name: "Nunu", email: "nana@nana.com", username: nil, password: nil, created_at: "2014-02-06 09:53:20", updated_at: "2014-02-06 09:53:20", date_of_birth: nil, age: 21, address: "Dago">, #<User id: 4, first_name: "Baba", last_name: "Bubu", email: "baba@baba.com", username: nil, password: nil, created_at: "2014-02-06 09:54:12", updated_at: "2014-02-06 09:54:12", date_of_birth: nil, age: 21, address: "Gedebage">, #<User id: 5, first_name: "Keke", last_name: "Keke", email: "keke@keke.com", username: nil, password: nil, created_at: "2014-02-06 09:54:39", updated_at: "2014-02-06 09:54:39", date_of_birth: nil, age: 21, address: "Cimahi">, #<User id: 6, first_name: "Maria", last_name: "Mari", email: "mari@mari.com", username: nil, password: nil, created_at: "2014-02-06 09:55:10", updated_at: "2014-02-06 09:55:10", date_of_birth: nil, age: 21, address: "Jakarta">, #<User id: 7, first_name: "Tomi", last_name: "tomtom", email: "tomi@tomi.com", username: nil, password: nil, created_at: "2014-02-06 09:55:47", updated_at: "2014-02-06 09:55:47", date_of_birth: nil, age: 21, address: "Bekasi">]> 
+2.1.0 :002 > Article
+ => Article(id: integer, title: string, body: text, created_at: datetime, updated_at: datetime) 
+2.1.0 :003 > Comment
+ => Comment(id: integer, content: string, created_at: datetime, updated_at: datetime) 
+2.1.0 :004 > articles = Article.create(:title => "AkuBingung", :body => "belajar rails agak ribet yah")
+   (0.1ms)  BEGIN
+  SQL (35.9ms)  INSERT INTO `articles` (`body`, `created_at`, `title`, `updated_at`) VALUES ('belajar rails agak ribet yah', '2014-02-06 10:04:50', 'AkuBingung', '2014-02-06 10:04:50')
+   (66.6ms)  COMMIT
+ => #<Article id: 1, title: "AkuBingung", body: "belajar rails agak ribet yah", created_at: "2014-02-06 10:04:50", updated_at: "2014-02-06 10:04:50"> 
+2.1.0 :005 > articles = Article.create(:title => "AkuGakBingung", :body => "belajar rails awalnya ribet, tapi sekarang sih... tetep ribet")
+   (0.2ms)  BEGIN
+  SQL (0.6ms)  INSERT INTO `articles` (`body`, `created_at`, `title`, `updated_at`) VALUES ('belajar rails awalnya ribet, tapi sekarang sih... tetep ribet', '2014-02-06 10:05:25', 'AkuGakBingung', '2014-02-06 10:05:25')
+   (37.8ms)  COMMIT
+ => #<Article id: 2, title: "AkuGakBingung", body: "belajar rails awalnya ribet, tapi sekarang sih... t...", created_at: "2014-02-06 10:05:25", updated_at: "2014-02-06 10:05:25"> 
+2.1.0 :007 > comments = Comment.create(:content => "ya gitu deh")
+   (0.1ms)  BEGIN
+  SQL (1.1ms)  INSERT INTO `comments` (`content`, `created_at`, `updated_at`) VALUES ('ya gitu deh', '2014-02-06 10:07:16', '2014-02-06 10:07:16')
+   (38.1ms)  COMMIT
+ => #<Comment id: 1, content: "ya gitu deh", created_at: "2014-02-06 10:07:16", updated_at: "2014-02-06 10:07:16"> 
+2.1.0 :008 > comments = Comment.create(:content => "mari dikerjakan saja")
+   (0.2ms)  BEGIN
+  SQL (0.7ms)  INSERT INTO `comments` (`content`, `created_at`, `updated_at`) VALUES ('mari dikerjakan saja', '2014-02-06 10:07:30', '2014-02-06 10:07:30')
+   (32.0ms)  COMMIT
+ => #<Comment id: 2, content: "mari dikerjakan saja", created_at: "2014-02-06 10:07:30", updated_at: "2014-02-06 10:07:30"> 
+2.1.0 :009 > comments = Comment.create(:content => "lama-lama bisa juga sih")
+   (0.1ms)  BEGIN
+  SQL (16.3ms)  INSERT INTO `comments` (`content`, `created_at`, `updated_at`) VALUES ('lama-lama bisa juga sih', '2014-02-06 10:07:43', '2014-02-06 10:07:43')
+   (48.9ms)  COMMIT
+ => #<Comment id: 3, content: "lama-lama bisa juga sih", created_at: "2014-02-06 10:07:43", updated_at: "2014-02-06 10:07:43"> 
+2.1.0 :010 > Country
+ => Country(id: integer, code: string, name: string, created_at: datetime, updated_at: datetime) 
+2.1.0 :011 > countries = Country.create(:code => ID, :name => "INdonesia")
+NameError: uninitialized constant ID
+	from (irb):11
+	from /home/wgs-com006/.rvm/gems/ruby-2.1.0@rails4.0/gems/railties-4.0.0/lib/rails/commands/console.rb:90:in `start'
+	from /home/wgs-com006/.rvm/gems/ruby-2.1.0@rails4.0/gems/railties-4.0.0/lib/rails/commands/console.rb:9:in `start'
+	from /home/wgs-com006/.rvm/gems/ruby-2.1.0@rails4.0/gems/railties-4.0.0/lib/rails/commands.rb:64:in `<top (required)>'
+	from bin/rails:4:in `require'
+	from bin/rails:4:in `<main>'
+2.1.0 :012 > countries = Country.create(:code => "ID" , :name => "Indonesia")
+   (0.1ms)  BEGIN
+  SQL (13.5ms)  INSERT INTO `countries` (`code`, `created_at`, `name`, `updated_at`) VALUES ('ID', '2014-02-06 10:10:07', 'Indonesia', '2014-02-06 10:10:07')
+   (48.9ms)  COMMIT
+ => #<Country id: 1, code: "ID", name: "Indonesia", created_at: "2014-02-06 10:10:07", updated_at: "2014-02-06 10:10:07"> 
+2.1.0 :013 > countries = Country.create(:code => "CD" , :name => "Canada")
+   (0.2ms)  BEGIN
+  SQL (9.9ms)  INSERT INTO `countries` (`code`, `created_at`, `name`, `updated_at`) VALUES ('CD', '2014-02-06 10:10:21', 'Canada', '2014-02-06 10:10:21')
+   (49.9ms)  COMMIT
+ => #<Country id: 2, code: "CD", name: "Canada", created_at: "2014-02-06 10:10:21", updated_at: "2014-02-06 10:10:21"> 
+2.1.0 :014 > countries = Country.create(:code => "Cn" , :name => "China")
+   (0.2ms)  BEGIN
+  SQL (11.1ms)  INSERT INTO `countries` (`code`, `created_at`, `name`, `updated_at`) VALUES ('Cn', '2014-02-06 10:10:35', 'China', '2014-02-06 10:10:35')
+   (42.2ms)  COMMIT
+ => #<Country id: 3, code: "Cn", name: "China", created_at: "2014-02-06 10:10:35", updated_at: "2014-02-06 10:10:35"> 
+

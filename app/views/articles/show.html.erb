@@ -1,0 +1,22 @@
+<h1>Articles#show</h1>
+<p>This is your article</p>
+
+<%= @article.title %>
+<%= @article.description %>
+<br/>
+<br/>
+
+<% @comments.each do |comment| %>
+	<%= comment.content %><br/>
+<% end %>
+
+<%= form_for @comment do |f| %>
+	content: <%= f.text_field :content %>
+	<%= f.hidden_field :article_id %>
+	<%= f.hidden_field :user_id %>
+	<%= f.submit :comment %>
+<% end %>
+
+
+<%= link_to "Back to Index", articles_path %>
+

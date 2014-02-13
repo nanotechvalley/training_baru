@@ -1,0 +1,15 @@
+<h1>Products#new</h1>
+<p>Find me in app/views/products/new.html.erb</p>
+<%= flash[:notice] %>
+<%= flash[:error] %>
+
+<%= form_for @product do |f| %>
+	Name: <%= f.text_field :name %>
+	Price: <%= f.text_field :price %>
+	Stock: <%= f.text_field :stock %>
+	Description: <%= f.text_area :description %>
+	<%=f.submit :create%>
+
+	<%=link_to "Back to Index", products_path , :class => "new-product"%>
+	
+<% end %>

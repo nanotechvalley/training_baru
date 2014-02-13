@@ -1,0 +1,13 @@
+<h1>Countries#new</h1>
+<p>Here is where your country details is required and saved</p>
+<%= flash[:notice] %>
+<%= flash[:error] %>
+<%= form_for @country do |f| %>
+	code: <%= f.text_field :code %>
+	name: <%= f.text_field :name %>
+	<%=f.submit :add_country%>
+
+	<%=link_to "Add New Country", new_country_path , :class => "new-country"%>
+	
+	
+<% end %>

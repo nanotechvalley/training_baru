@@ -1,0 +1,48 @@
+2.1.0p0 :001 > user = User.find 3
+  User Load (0.4ms)  SELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1
+ => #<User id: 3, first_name: "Nana", last_name: "Nunu", email: "nana@nana.com", username: nil, password: nil, created_at: "2014-02-06 09:53:20", updated_at: "2014-02-06 09:53:20", date_of_birth: nil, age: 21, address: "Dago", country_id: nil> 
+2.1.0p0 :002 > product = user.products.create(:name => "asdsadasdsadsadas", :price => "50000")
+   (0.2ms)  BEGIN
+  SQL (0.3ms)  INSERT INTO `products` (`created_at`, `name`, `price`, `updated_at`, `user_id`) VALUES ('2014-02-07 09:36:16', 'asdsadasdsadsadas', '50000', '2014-02-07 09:36:16', 3)
+   (52.1ms)  COMMIT
+ => #<Product id: 1, name: "asdsadasdsadsadas", price: "50000", stock: nil, description: nil, created_at: "2014-02-07 09:36:16", updated_at: "2014-02-07 09:36:16", user_id: 3> 
+2.1.0p0 :003 > user = User.find 2
+  User Load (0.4ms)  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+ => #<User id: 2, first_name: "Maya", last_name: nil, email: "maya@maya.com", username: nil, password: nil, created_at: "2014-02-06 09:17:20", updated_at: "2014-02-06 09:36:02", date_of_birth: nil, age: nil, address: nil, country_id: nil> 
+2.1.0p0 :004 > product = user.products.create(:name => "mawar merah", :price => "12000")
+   (0.1ms)  BEGIN
+  SQL (0.3ms)  INSERT INTO `products` (`created_at`, `name`, `price`, `updated_at`, `user_id`) VALUES ('2014-02-07 09:39:03', 'mawar merah', '12000', '2014-02-07 09:39:03', 2)
+   (35.5ms)  COMMIT
+ => #<Product id: 2, name: "mawar merah", price: "12000", stock: nil, description: nil, created_at: "2014-02-07 09:39:03", updated_at: "2014-02-07 09:39:03", user_id: 2> 
+2.1.0p0 :005 > product = user.products.create(:name => "mawar biru", :price => "15000")
+   (0.2ms)  BEGIN
+  SQL (0.3ms)  INSERT INTO `products` (`created_at`, `name`, `price`, `updated_at`, `user_id`) VALUES ('2014-02-07 09:39:15', 'mawar biru', '15000', '2014-02-07 09:39:15', 2)
+   (32.2ms)  COMMIT
+ => #<Product id: 3, name: "mawar biru", price: "15000", stock: nil, description: nil, created_at: "2014-02-07 09:39:15", updated_at: "2014-02-07 09:39:15", user_id: 2> 
+2.1.0p0 :006 > article = user.articles.create(:title => "mawar biru itu ga biru biru banget deh", :description => "biru biru gitu mawar mawar loh dan ga biru banget deh")
+   (0.1ms)  BEGIN
+  SQL (0.3ms)  INSERT INTO `articles` (`created_at`, `description`, `title`, `updated_at`, `user_id`) VALUES ('2014-02-07 09:41:51', 'biru biru gitu mawar mawar loh dan ga biru banget deh', 'mawar biru itu ga biru biru banget deh', '2014-02-07 09:41:51', 2)
+   (60.8ms)  COMMIT
+ => #<Article id: 14, title: "mawar biru itu ga biru biru banget deh", description: "biru biru gitu mawar mawar loh dan ga biru banget d...", created_at: "2014-02-07 09:41:51", updated_at: "2014-02-07 09:41:51", rating: nil, user_id: 2> 
+2.1.0p0 :007 > article = user.articles.create(:title => "mobil biru itu ga biru biru banget deh", :description => "walau gitu mobil jalan loh dan ga biru banget deh")
+   (0.2ms)  BEGIN
+  SQL (0.3ms)  INSERT INTO `articles` (`created_at`, `description`, `title`, `updated_at`, `user_id`) VALUES ('2014-02-07 09:42:26', 'walau gitu mobil jalan loh dan ga biru banget deh', 'mobil biru itu ga biru biru banget deh', '2014-02-07 09:42:26', 2)
+   (25.7ms)  COMMIT
+ => #<Article id: 15, title: "mobil biru itu ga biru biru banget deh", description: "walau gitu mobil jalan loh dan ga biru banget deh", created_at: "2014-02-07 09:42:26", updated_at: "2014-02-07 09:42:26", rating: nil, user_id: 2> 
+2.1.0p0 :008 > country = Country.find 1
+  Country Load (0.3ms)  SELECT `countries`.* FROM `countries` WHERE `countries`.`id` = 1 LIMIT 1
+ => #<Country id: 1, code: "ID", name: "Indonesia", created_at: "2014-02-06 10:10:07", updated_at: "2014-02-06 10:10:07"> 
+2.1.0p0 :009 > user = country.users.create(:first_name => "Jojo)2.1.0p0 :010"> ^C
+2.1.0p0 :010 > country = Country.find 1
+  Country Load (0.2ms)  SELECT `countries`.* FROM `countries` WHERE `countries`.`id` = 1 LIMIT 1
+ => #<Country id: 1, code: "ID", name: "Indonesia", created_at: "2014-02-06 10:10:07", updated_at: "2014-02-06 10:10:07"> 
+2.1.0p0 :011 > user = country.users.create(:first_name => "Jojo", :last_name => "Jeje")
+   (0.2ms)  BEGIN
+  SQL (0.3ms)  INSERT INTO `users` (`country_id`, `created_at`, `first_name`, `last_name`, `updated_at`) VALUES (1, '2014-02-07 09:47:17', 'Jojo', 'Jeje', '2014-02-07 09:47:17')
+   (34.9ms)  COMMIT
+ => #<User id: 19, first_name: "Jojo", last_name: "Jeje", email: nil, username: nil, password: nil, created_at: "2014-02-07 09:47:17", updated_at: "2014-02-07 09:47:17", date_of_birth: nil, age: nil, address: nil, country_id: 1> 
+2.1.0p0 :012 > user = country.users.create(:first_name => "Bobo", :last_name => "Bebe")
+   (0.2ms)  BEGIN
+  SQL (0.3ms)  INSERT INTO `users` (`country_id`, `created_at`, `first_name`, `last_name`, `updated_at`) VALUES (1, '2014-02-07 09:48:03', 'Bobo', 'Bebe', '2014-02-07 09:48:03')
+   (29.9ms)  COMMIT
+ => #<User id: 20, first_name: "Bobo", last_name: "Bebe", email: nil, username: nil, password: nil, created_at: "2014-02-07 09:48:03", updated_at: "2014-02-07 09:48:03", date_of_birth: nil, age: nil, address: nil, country_id: 1> 

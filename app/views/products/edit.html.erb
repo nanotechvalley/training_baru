@@ -1,0 +1,13 @@
+<h1>Products#edit</h1>
+<p>Find me in app/views/products/edit.html.erb</p>
+
+<%= form_for @product do |f| %>
+	Name: <%= f.text_field :name %>
+	Price: <%= f.text_field :price %>
+	Stock: <%= f.text_field :stock %>
+	Description: <%= f.text_area :description %>
+	<%=f.submit :edit%>
+
+	<%=link_to "Back to Index", products_path , :class => "new-product"%>
+	
+<% end %>

@@ -1,0 +1,16 @@
+<h1>Articles#new</h1>
+<p>Welcome to the blog. Enjoy your surf!</p>
+<%= flash[:notice] %>
+<%= flash[:error] %>
+<%= form_for @article do |f| %>
+	title: <%= f.text_field :title %>
+	description: <%= f.text_field :description %>
+	rating: <%= f.number_field :rating %>
+	user_id: <%= f.text_field :user_id %>
+	<%=f.submit :edit%>
+
+	<%=link_to "Back to Index", articles_path , :class => "new-article"%>
+	<%=link_to "Back to Index", articles_path , :class => "new-article"%>
+
+	
+<% end %>

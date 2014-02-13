@@ -1,0 +1,35 @@
+<h1>Users#new</h1>
+<p>Please register</p>
+<%= flash[:notice] %>
+<%= flash[:error] %>
+
+<% if @user.errors.any? %>
+	<div id="errorExplanation">
+		<h2>
+			<%= pluralize(@user.errors.count, "error") %>
+			prohibited this user from being saved:
+		</h2>
+		<ul>
+			<% @user.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<%= form_for @user do |f| %>
+	first_name: <%= f.text_field :first_name %>
+	last_name: <%= f.text_field :last_name %>
+	email: <%= f.text_field :email %>
+	username: <%= f.text_field :username %>
+	password: <%= f.password_field :password %>
+	date_of_birth: <%= f.date_field :date_of_birth %>
+	age: <%= f.number_field :age %>
+	address: <%= f.text_area :address %>
+	country_id: <%= f.text_field :country_id %>
+
+	<%=f.submit :edit%>
+
+	<%=link_to "Back to Index", users_path , :class => "new-user"%>
+
+<% end %>
