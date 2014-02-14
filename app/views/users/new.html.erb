@@ -16,7 +16,8 @@
 		</ul>
 	</div>
 <% end %>
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => {:multipart => true } do |f| %>
+  <%= f.file_field :user_picture %>
 	first_name: <%= f.text_field :first_name %>
 	last_name: <%= f.text_field :last_name %>
 	email: <%= f.text_field :email %>

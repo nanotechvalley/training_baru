@@ -3,6 +3,10 @@
 
 <%= @article.title %>
 <%= @article.description %>
+
+<%= image_tag @article.article_picture.url %>
+<%= image_tag @article.article_picture.url(:medium) %>
+<%= image_tag @article.article_picture.url(:thumb) %>
 <br/>
 <br/>
 

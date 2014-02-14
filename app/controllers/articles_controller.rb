@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+
+	before_filter :authenticate_user!
+
 	layout 'articles'
 	
 	def new
@@ -22,8 +25,8 @@ class ArticlesController < ApplicationController
 	end
 
 	def index
-		@articles  = Article.select("title, description")
-							.where("title LIKE '%buah%' or title lIKE 'rumah%' or title LIKE '%mobil'")
+		@articles  = Article.select("title, description", "id")
+							#.where("title LIKE '%buah%' or title lIKE 'rumah%' or title LIKE '%mobil'")
 						
 
 	end
@@ -59,7 +62,7 @@ class ArticlesController < ApplicationController
 	private
 	
 	def article_params
-		params.require(:article).permit(:title, :description, :rating, :user_id)
+		params.require(:article).permit(:title, :description, :rating, :user_id, :article_picture)
 	end
 
  

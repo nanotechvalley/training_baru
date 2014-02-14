@@ -1,4 +1,5 @@
 TrainingMaya::Application.routes.draw do
+  devise_for :users, :controllers => { :registrations => "registrations"}
   #get "products/index"
   #get "products/new"
   #get "products/edit"
@@ -11,6 +12,7 @@ resources :categories
 resources :comments
 resources :countries
 resources :users
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
@@ -62,4 +64,8 @@ resources :users
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+
+  root :to => "users#index"
+  
 end

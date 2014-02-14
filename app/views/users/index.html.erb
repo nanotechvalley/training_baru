@@ -18,6 +18,9 @@
 		<td><%= user.age %></td>
 		<td><%= link_to "edit", edit_user_path(user.id) %></td>
 		<td><%= link_to "delete", user_path(user.id), :confirm => "Are you sure to delete this user?", :method => "delete"%></td>
+
+	<%= paginate @users%>
+
 		</tr>
 <% end %>
 </table>

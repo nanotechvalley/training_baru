@@ -2,7 +2,8 @@
 <p>Welcome to the blog. Enjoy your surf!</p>
 <%= flash[:notice] %>
 <%= flash[:error] %>
-<%= form_for @article do |f| %>
+<%= form_for @article, :html => {:multipart => true } do |f| %>
+  <%= f.file_field :article_picture %>
 	title: <%= f.text_field :title %>
 	description: <%= f.text_field :description %>
 	rating: <%= f.number_field :rating %>
@@ -11,6 +12,9 @@
 
 	<%=link_to "Back to Index", articles_path , :class => "new-article"%>
 	<%=link_to "Back to Index", articles_path , :class => "new-article"%>
+
+
+
 
 	
 <% end %>

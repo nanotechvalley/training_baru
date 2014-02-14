@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+	before_filter :authenticate_user!
+
 	def new
 		@user = User.new
 	end
@@ -20,7 +23,9 @@ class UsersController < ApplicationController
 	end
 
 	def index
-		@users = User.senang
+
+		@users = User.page(params[:page]).per(1)
+
 	end
 
 	def destroy
@@ -52,6 +57,6 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:first_name, :last_name, :email, :username, :password, :date_of_birth, :age, :address, :country_id)
+		params.require(:user).permit(:first_name, :last_name, :email, :username, :password, :date_of_birth, :age, :address, :country_id, :user_picture)
 	end
 end
