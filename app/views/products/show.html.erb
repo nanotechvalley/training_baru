@@ -1,7 +1,9 @@
-<h1>Countries#show</h1>
-<p>Here is where the country you chose is shown/p>
+<h1>Products#show</h1>
+<p>Here is where the product you chose is shown/p>
 
-<%= @country.code %>
-<%= @country.name %>
+<%= @product.name %>
+<%= @product.price %>
+<%= @product.stock %>
+<%= @product.description %>
 
-<%= link_to "Back to Index", countries_path %>
+<%= link_to "Back to Index", products_path %>

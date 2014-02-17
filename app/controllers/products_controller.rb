@@ -23,8 +23,6 @@ class ProductsController < ApplicationController
 
 	def index
 		@products = Product.select("name, price, stock, description")
-						   .limit(5)
-						   .where("name LIKE '%handphone%' or name lIKE 'mobile%' or name LIKE '%cellular' and products.price > 10000")
 						   
 	end
 

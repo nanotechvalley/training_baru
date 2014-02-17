@@ -1,4 +1,5 @@
 TrainingMaya::Application.routes.draw do
+  get "home/index"
   devise_for :users, :controllers => { :registrations => "registrations"}
   #get "products/index"
   #get "products/new"
@@ -66,6 +67,6 @@ resources :users
   #   end
 
 
-  root :to => "users#index"
+  root :to => "home#index"
   
 end
