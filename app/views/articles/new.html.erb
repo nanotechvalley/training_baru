@@ -8,6 +8,7 @@
 	description: <%= f.text_field :description %>
 	rating: <%= f.number_field :rating %>
 	user_id: <%= f.text_field :user_id %>
+	headline: <%= f.check_box :headline, :value => true %>
 	<%=f.submit :create%>
 
 	<%=link_to "Back to Index", articles_path , :class => "new-article"%>

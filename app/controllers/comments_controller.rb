@@ -2,6 +2,11 @@ class CommentsController < ApplicationController
 	def destroy
 	end
 
+	def index
+		@comments =Comment.where(:created_at DESC), :limit(5)
+
+	end
+
 	def create
 		@comment = Comment.new(comment_params)
 		if @comment.save

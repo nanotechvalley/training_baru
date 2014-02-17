@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140217072951) do
     t.string   "article_picture_content_type"
     t.integer  "article_picture_file_size"
     t.datetime "article_picture_updated_at"
-    t.text     "headlines"
+    t.boolean  "headline"
   end
 
   create_table "categories", force: true do |t|

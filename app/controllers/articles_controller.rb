@@ -25,6 +25,8 @@ class ArticlesController < ApplicationController
 	end
 
 	def index
+		@articles :Article.order => "created_at DESC", :limit(5)
+
 		@articles  = Article.select("title, description", "id")
 							#.where("title LIKE '%buah%' or title lIKE 'rumah%' or title LIKE '%mobil'")
 						
@@ -62,7 +64,7 @@ class ArticlesController < ApplicationController
 	private
 	
 	def article_params
-		params.require(:article).permit(:title, :description, :rating, :user_id, :article_picture)
+		params.require(:article).permit(:title, :description, :rating, :user_id, :article_picture, :headline)
 	end
 
  
